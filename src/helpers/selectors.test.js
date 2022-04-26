@@ -98,12 +98,12 @@ test("getInterviewersForDay returns an array", () => {
 
 test("getInterviewersForDay returns an array with a length matching the number of interviewers for that day", () => {
   const result = getInterviewersForDay(state, "Monday");
-  expect(result.length).toEqual(3);
+  expect(result.length).toEqual(2);
 });
 
 test("getInterviewersForDay returns an array containing the correct interviewer objects", () => {
   const [first, second] = getInterviewersForDay(state, "Tuesday");
-  expect(first).toEqual(state.interviewers["3"]);
+  expect(first).toEqual(state.interviewers["1"]);
   expect(second).toEqual(state.interviewers["2"]);
 });
 
