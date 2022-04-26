@@ -6,17 +6,18 @@ function useVisualMode(initial) {
 
   function transition(newMode, replace = false) {
     if (replace) {
-      setMode(newMode);
+      setHistory(prev => prev.slice(0, -1));
+      setHistory(prev => [...prev, newMode]);
     } else {
-      setMode(newMode);
-      history.push(newMode);
+      setHistory(prev => [...prev, newMode]);
     }
+    setMode(newMode);
   }
 
   function back() {
     if (history.length > 0) {
-      history.pop();
-      setMode(history[history.length - 1]);
+      setHistory(history.slice(0, -1));
+      setMode(history[history.length - 2]);
     }
   }
 
