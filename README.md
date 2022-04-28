@@ -22,9 +22,16 @@ Development focuses on a single page application (SPA) called Interview Schedule
 
 # Project Screenshots
 
+## Screenshot of the appointments view
 !["Screenshot of the appointments view"](https://github.com/ralphunrau/scheduler/blob/master/docs/AppointmentsView.png?raw=true)
+
+## Screenshot of a new interview booking form
 !["Screenshot of a new interview booking form"](https://github.com/ralphunrau/scheduler/blob/master/docs/AddingNewUser.png?raw=true)
+
+## Screenshot of deleting interview prompt
 !["Screenshot of deleting interview prompt"](https://github.com/ralphunrau/scheduler/blob/master/docs/DeletingExistingUser.png?raw=true)
+
+## Screenshot of deleting interview animation
 !["Screenshot of deleting interview animation"](https://github.com/ralphunrau/scheduler/blob/master/docs/DeletingExistingUser2.png?raw=true)
 
 ## Setup
