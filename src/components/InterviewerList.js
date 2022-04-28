@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 function InterviewerList(props) {
 
+  //CREATES AN ARRAY OF ALL INTERVIEWERS FOR A DAY
   const interviewerArray = props.interviewers.map((interviewer) => {
     return (
       <InterviewerListItem
@@ -25,8 +26,9 @@ function InterviewerList(props) {
       </ul>
     </section>
   );
-}
+};
 
+//REQUIRES THE PROPS TO BE AN ARRAY
 InterviewerList.propTypes = {
   interviewers: PropTypes.array.isRequired
 };

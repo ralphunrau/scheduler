@@ -3,7 +3,8 @@ import DayListItem from "components/DayListItem";
 
 export default function DayList(props) {
 
-  const array1 = props.days.map((day) => {
+  //CREATES AN ARRAY OF ALL INTERVIEWS
+  const listOfAllInterviews = props.days.map((day) => {
     return (
       <DayListItem 
       key={day.id}
@@ -18,7 +19,7 @@ export default function DayList(props) {
 
   return (
     <ul>
-      {array1}
+      {listOfAllInterviews}
     </ul>
   );
-}
+};

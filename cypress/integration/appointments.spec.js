@@ -1,7 +1,8 @@
 describe('Appointments', () => {
 
+  //COMMANDS TO RUN BEFORE EACH TEST
   beforeEach(() => {
-    cy.request('GET', '/api/debug/reset')
+    cy.request('GET', '/api/debug/reset');
 
     cy.visit('/');
 
@@ -20,7 +21,7 @@ describe('Appointments', () => {
       .click();
     
     cy.contains('Save')
-      .click()
+      .click();
 
     cy.contains(".appointment__card--show", "Lydia Miller-Jones");
     cy.contains(".appointment__card--show", "Sylvia Palmer");
@@ -29,7 +30,7 @@ describe('Appointments', () => {
   it('should edit an interview', () => {
     cy.get('[alt="Edit"]')
       .first()
-      .click({force: true})
+      .click({force: true});
 
     cy.get('[data-testid="student-name-input"]')
       .clear()

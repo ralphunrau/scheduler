@@ -8,13 +8,14 @@ function InterviewerListItem(props) {
     'interviewers__item--selected' : props.selected
   });
 
+  //DISPLAYS NAME IF SELECTED CLASS EXISTS
   function displayInterviewerName(props) {
     if (props.selected) {
       return <>{props.name}</>
     } else {
       return <></>
     }
-  }
+  };
 
   return (
     <li onClick={props.setInterviewer} key={props.key} className={interviewerClass}>
@@ -26,6 +27,6 @@ function InterviewerListItem(props) {
       {displayInterviewerName(props)}
     </li>
   );
-}
+};
 
 export default InterviewerListItem;

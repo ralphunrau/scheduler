@@ -1,4 +1,4 @@
-
+//RETURNS AN ARRAY OF ALL APPOINTMENTS IN A GIVEN DAY
 export function getAppointmentsForDay(state, day) {
   const parameterDay = state.days.filter(currentDay => currentDay.name === day);
 
@@ -12,9 +12,11 @@ export function getAppointmentsForDay(state, day) {
   appointmentsFromDays.forEach(id => {
     selectedAppointments.push(state.appointments[id]);
   });
+  
   return selectedAppointments;
-}
+};
 
+//RETURNS AN OBJECT WITH ALL THE INTERVIEW INFO
 export function getInterview(state, interview) {
   if (interview === null) {
     return null;
@@ -28,10 +30,11 @@ export function getInterview(state, interview) {
       'name': state.interviewers[interviewerId].name,
       'avatar': state.interviewers[interviewerId].avatar
     }
-  }
+  };
   return interviewObject;
-}
+};
 
+//RETURNS AN ARRAY WITH ALL INTERVIEWERS FOR A GIVEN DAY
 export function getInterviewersForDay(state, name) {
   
   const filteredDays = state.days.filter(day => day.name === name);
@@ -49,4 +52,4 @@ export function getInterviewersForDay(state, name) {
     }
   }
   return filteredInterviewers;
-}
+};

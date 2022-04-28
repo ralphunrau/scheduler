@@ -3,15 +3,18 @@ import axios from "axios";
 
 function useApplicationData() {
   
+  //INITIALIZES STATE
   const [state, setState] = useState({
     day: 'Monday',
     days: [],
     appointments: {},
     interviewers: {}
-  })
+  });
 
+  //FUNCTION THAT SETS A NEW DAY ON CALL
   const setDay = day => setState({ ...state, day });
 
+  //SETS STATE, RETRIEVING THE INFO FROM THE DATABASE
   useEffect(() => {
     Promise.all([
       axios.get('api/days'),
@@ -20,16 +23,17 @@ function useApplicationData() {
     ]).then((all) => {
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
     })
-  }, [])
+  }, []);
 
+  //SETS NEW SPOTS STATE WHEN AN APPOINTMENT IS BOOKED OR CANCELLED
   function updateSpots(state, appointmentId) {
 
-    // Returns a single day object that has the current appointment ID
+    //RETURNS A SINGLE DAY OBJECT THAT AHS THE CURRENT APPOINTMENT ID
     const currentDay = state.days.find((day) => {
       return day.appointments.includes(appointmentId);
     })
 
-    // Returns an array of all appointments in a current day object that are null
+    //RETURNS AN ARRAY OF ALL APPOINTMENTS IN A CURRENT DAY OBJECT THAT ARE NULL
     const nullAppointments = currentDay.appointments.filter((id) => {
       return state.appointments[id].interview === null;
     })
@@ -52,6 +56,7 @@ function useApplicationData() {
 
   };
 
+  //ADDS A NEW INTERVIEW TO THE DATABASE
   function bookInterview(id, interview) {
     
     const appointment = {
@@ -72,20 +77,20 @@ function useApplicationData() {
     return axios.put(`/api/appointments/${id}`, appointment)
       .then(() => {
         updateSpots(newState, id);
-      })
-    
+      });
   };
 
+  //DESTROYS A INTERVIEW IN THE DATABASE
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
       interview: null
-    }
+    };
 
     const appointments = {
       ...state.appointments,
       [id]: appointment
-    }
+    };
 
     const newState = {
       ...state,
@@ -95,7 +100,7 @@ function useApplicationData() {
     return axios.delete(`/api/appointments/${id}`, appointment)
       .then(() => {
         updateSpots(newState, id)
-      })
+      });
   };
 
   return {
@@ -103,23 +108,7 @@ function useApplicationData() {
     setDay,
     bookInterview,
     cancelInterview
-  }
-}
+  };
+};
 
 export default useApplicationData;
-
-// const updateSpots = function (state, id) {
-
-//   const currentDay = state.days.find((d) => d.appointments.includes(id));
-//   const dayIndex = state.days.findIndex((d) => d.id === currentDay.id)
-
-//   const nullAppointments = currentDay.appointments.filter(id => !state.appointments[id].interview) 
-//   const spots = nullAppointments.length 
-
-//   const newDay = { ...currentDay, spots };
-//   const newDays = state.days.map((d) => { return d.name === state.day ? newDay : d});
-
-//   setState({ ...state, days: newDays });
-
-//   return newDays;
-// };

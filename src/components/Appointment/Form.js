@@ -8,26 +8,24 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
+  //EMPTIES APPOINTMENT CARD
   const reset = function () {
     setStudent('');
     setInterviewer(null);
   }
 
+  //BRINGS USER BACK TO EMPTY APPOINTMENT CARD
   const cancel = function () {
     reset();
     props.onCancel();
   }
 
+  //PROMTS USER TO HAVE INPU IF NONE
   function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
       return;
     }
-
-    // if (interviewer === null) {
-    //   setError("Please select an interviewer");
-    //   return;
-    // }
     
     setError('');
     props.onSave(student, interviewer);
